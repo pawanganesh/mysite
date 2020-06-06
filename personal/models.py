@@ -17,4 +17,4 @@ from django.db import models
 #         return self.title
 #     class Meta:
 #         verbose_name = "The Question"
-#         verbose_name_plural = "Peoples Questions" 
+#         verbose_name_plural = "Peoples Questions"
