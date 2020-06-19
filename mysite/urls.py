@@ -25,26 +25,37 @@ urlpatterns = [
     path('register/', include('account.urls')),
     path('blog/', include('blog.urls', 'blog')),
 
-    #path('account/', include('django.contrib.auth.urls')), https://docs.djangoproject.com/en/3.0/topics/auth/default/
+    # REST FRAMEWORK URLS
+    path('api/blog/', include('blog.api.urls', 'blog_api')),
+    path('api/account/', include('account.api.urls', 'account_api')),
 
-    #https://github.com/mitchtabian/CodingWithMitchBlog-REST-API/blob/Django-REST-framework-Setup/src/mysite/urls.py
+
+
+
+    # path('account/', include('django.contrib.auth.urls')), https://docs.djangoproject.com/en/3.0/topics/auth/default/
+
+    # https://github.com/mitchtabian/CodingWithMitchBlog-REST-API/blob/Django-REST-framework-Setup/src/mysite/urls.py
     # Password reset links (ref: https://github.com/django/django/blob/master/django/contrib/auth/views.py)
-    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), 
-        name='password_change_done'),
+    path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'),
+         name='password_change_done'),
 
-    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'), 
-        name='password_change'),
+    path('password_change/', auth_views.PasswordChangeView.as_view(template_name='registration/password_change.html'),
+         name='password_change'),
 
     path('password_reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_done.html'),
-     name='password_reset_done'),
+         name='password_reset_done'),
 
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('password_reset/', auth_views.PasswordResetView.as_view(), name='password_reset'),
-    
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),
+         name='password_reset_confirm'),
+    path('password_reset/', auth_views.PasswordResetView.as_view(),
+         name='password_reset'),
+
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),
-     name='password_reset_complete'),
+         name='password_reset_complete'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
